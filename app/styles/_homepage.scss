@@ -1,0 +1,46 @@
+#Homepage {
+    .table {
+        border: 5px solid darkgrey;
+        border-radius: 10px;
+    }
+    .odd {
+        background-color: #FFF;
+    }
+    .even {
+        background-color: #ccc;
+    }
+    .ng-table {
+        th {
+            background: darkgrey;
+            text-shadow: none;
+            text-align: left;
+        }
+    }
+    .icon {
+        width: 10px;
+    }
+    .addButton {
+        float: right;
+        margin-bottom: 10px;
+    }
+    
+    .input-block{
+    display: block;
+    margin : 5px 0;
+    }
+}
+
+.modal-dialog {
+    width: 65%;
+    min-width: 800px;
+    .modal-content {
+        .modal-body {
+            overflow-y: auto;
+            
+            input{
+            margin:5px 0;
+            }
+           
+        }
+    }
+}

@@ -1,0 +1,72 @@
+<div id="Homepage">
+	<div>
+		<button class="addButton btn btn-success" ng-click="createArtWork()">
+			<i class="glyphicon glyphicon-plus "> </i>
+			Create Art Work
+		</button>
+		<table class="table">
+			<tr>
+				<th>Artist & Title & Date</th>
+				<th>Medium & Material</th>
+				<th>Dimension & Color</th>
+				<th>Price</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tbody ng-repeat="w in artWorks" style="border: 2px solid grey;">
+				<tr>
+					<td>
+						<div style="font-weight: bold;">{{w.artist}}</div>
+						<div style="font-weight: bold;">{{w.title}}</div>
+						<div style="font-weight: bold;">{{w.year}}</div>
+					</td>
+					<td>
+						<div>{{mediums[w.medium].name}}</div>
+						<div>
+							<span ng-repeat="mat in w.mats track by $index">
+								{{materials[mat].name}}
+								<span ng-show="!$last">|</span>
+							</span>
+						</div>
+					</td>
+					<td>
+						<div>{{w.dimension1}} X {{w.dimension2}} X {{w.dimension3}}</div>
+						<div>{{w.color}}</div>
+					</td>
+					<td>
+						<div>{{w.price}}</div>
+						<div>
+							<span ng-show="!!w.includes_vat">Gross</span>
+							<span ng-show="!w.includes_vat">Net</span>
+							<span>Vat : {{w.vat}}%</span>
+						</div>
+					</td>
+					<td>
+						<button class="btn-link" ng-click="editAtrWork(w)">
+							<i class="glyphicon glyphicon-edit"> </i>
+						</button>
+					</td>
+					<td>
+						<button class="btn-link" ng-click="deleteArtWork(w)">
+							<i class="glyphicon glyphicon-trash"> </i>
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6">
+						<div style="text-align: center;">
+							<button class="btn-link" ng-click="w.showMore=!w.showMore">
+								<span ng-show="!w.showMore">Show More</span>
+								<span ng-show="!!w.showMore">Show Less</span>
+							</button>
+						</div>
+						<div ng-show="!!w.showMore">
+							Description :
+							<textarea ng-model="w.description" style="width: 80%;"></textarea>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

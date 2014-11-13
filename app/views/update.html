@@ -1,0 +1,93 @@
+<div class="modal-body">
+	<table class="table">
+		<tr>
+			<th>Artist & Title & Date</th>
+			<th>Medium & Material</th>
+			<th>Dimension & Color</th>
+			<th>Price</th>
+		</tr>
+		<tr>
+			<td>
+				<div>
+					<input ng-model="artWork.artist" placeholder="Artist" />
+				</div>
+				<div>
+					<input ng-model="artWork.title" placeholder="Title" />
+				</div>
+				<div>
+					<input ng-model="artWork.year" placeholder="Year" />
+				</div>
+			</td>
+			<td>
+				<div>
+					<select ng-model="artWork.medium" ng-options="m.url as m.name for (key,m) in mediums"></select>
+				</div>
+				<br />
+				<div>
+					<div>
+						<span ng-repeat="mat in mats">
+							<span>
+								<button class="btn btn-primary" ng-click="removeMaterial(mat)">
+									{{materials[mat].name}}
+									<i class="glyphicon glyphicon-remove"> </i>
+								</button>
+							</span>
+						</span>
+					</div>
+					<div>
+						<input style="height: 32px;" ng-model="mat" />
+						<button class="btn btn-success" ng-click="createMaterialAndAdd()">
+							<i class="glyphicon glyphicon-plus "></i>
+						</button>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div ng-show="!!artWork.medium">
+					<span ng-show="mediums[artWork.medium].dimensions===2">
+						H:
+						<input style="width: 20px;" ng-model="artWork.dimension1" />
+						W:
+						<input style="width: 20px;" ng-model="artWork.dimension2" />
+					</span>
+					<span ng-show="mediums[artWork.medium].dimensions===3">
+						H:
+						<input style="width: 20px;" ng-model="artWork.dimension1" />
+						W:
+						<input style="width: 20px;" ng-model="artWork.dimension2" />
+						D:
+						<input style="width: 20px;" ng-model="artWork.dimension3" />
+					</span>
+					<select ng-model="artWork.dimensions_in_cm" ng-options="d.id as d.label for d in dimensionsInCm"></select>
+				</div>
+			</td>
+			<td>
+				<div>
+					<div>
+						<span style="">Price:</span>
+						<input style="width: 40px;" ng-model="artWork.price" />
+					</div>
+					Net :
+					<input type="checkbox" ng-model="artWork.includes_vat" />
+					Gross :
+					<input type="checkbox" ng-model="artWork.gross" />
+					<div>
+						<span style="">Vat:</span>
+						<input style="width: 40px;" ng-model="artWork.vat" />
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">
+				Description :
+				<textarea ng-model="w.description" style="width: 80%;"></textarea>
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="modal-footer" ng-show="!isCreate && !isUpdate">
+	<div>
+		<button class="btn btn-default" ng-click="close()">Done</button>
+	</div>
+</div>
