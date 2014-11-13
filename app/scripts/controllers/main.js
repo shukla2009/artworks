@@ -87,10 +87,9 @@ angular.module('artworksApp').controller('MainCtrl', function($scope, DataServic
 	}
 
 	DataService.getData('http://54.77.217.175/materials').then(function(result) {
-		angular.forEach([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ], function(url) {
-			// only loading 50 tags
-			if (!DataService.materials['http://54.77.217.175/materials/' + url]) {
-				DataService.getMaterial('http://54.77.217.175/materials/' + url);
+		angular.forEach(result.data.urls, function(url) {
+			if (!DataService.materials[url]) {
+				DataService.getMaterial(url);
 			}
 		});
 
