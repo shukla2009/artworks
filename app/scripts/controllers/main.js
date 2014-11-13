@@ -31,12 +31,6 @@ angular.module('artworksApp').controller('MainCtrl', function($scope, DataServic
 					DataService.getData(artWork.data.materials).then(function(mat) {
 						artWork.data.mats = mat.data.urls;
 						$scope.artWorks.push(artWork.data);
-						angular.forEach(mat.data.urls, function(mUrl) {
-							if (!DataService.materials[mat.data.urls]) {
-								DataService.getMaterial(mUrl);
-							}
-
-						});
 					});
 				});
 			});
@@ -61,6 +55,8 @@ angular.module('artworksApp').controller('MainCtrl', function($scope, DataServic
 			"year" : 2014
 		}).then(function(result) {
 			DataService.getData(result.headers().location).then(function(artWork) {
+				artWork.data.mats = [];
+				$scope.artWorks.unshift(artWork.data);
 				openUpdateDialog(artWork.data);
 			});
 		});
@@ -86,10 +82,18 @@ angular.module('artworksApp').controller('MainCtrl', function($scope, DataServic
 				return artWork;
 			},
 		};
-		var modelInstance = $modal.open(modelContent);
-		modelInstance.result.then(function() {
-			load();
-		});
+		$modal.open(modelContent);
+
 	}
+
+	DataService.getData('http://54.77.217.175/materials').then(function(result) {
+		angular.forEach([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ], function(url) {
+			// only loading 50 tags
+			if (!DataService.materials['http://54.77.217.175/materials/' + url]) {
+				DataService.getMaterial('http://54.77.217.175/materials/' + url);
+			}
+		});
+
+	});
 
 });

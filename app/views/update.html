@@ -35,8 +35,9 @@
 						</span>
 					</div>
 					<div>
-						<input style="height: 32px;" ng-model="mat" />
-						<button class="btn btn-success" ng-click="createMaterialAndAdd()">
+						<input style="height: 32px;" ng-model="mat" typeahead="m.name as m.name for m in materialsArray | filter:$viewValue" />
+						<button class=" btn
+							btn-success" ng-click="createMaterialAndAdd()">
 							<i class="glyphicon glyphicon-plus "></i>
 						</button>
 					</div>

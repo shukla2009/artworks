@@ -3,6 +3,7 @@
 angular.module('artworksApp').controller('UpdateCtrl', function($scope, $modalInstance, artWork, DataService) {
 	$scope.mediums = DataService.mediums;
 	$scope.materials = DataService.materials;
+	$scope.materialsArray = DataService.materialsArray;
 	$scope.mats;
 	$scope.dimensionsInCm = [ {
 		id : true,
@@ -38,7 +39,12 @@ angular.module('artworksApp').controller('UpdateCtrl', function($scope, $modalIn
 					DataService.updateMaterials($scope.artWork.id, result.headers().location);
 				}
 			}, function(err) {
-				console.log(err);
+				angular.forEach($scope.materialsArray, function(mat) {
+					if (!!$scope.mats && (mat.name === $scope.mat)) {
+						$scope.mats.push(mat.url);
+						DataService.updateMaterials($scope.artWork.id, mat.url);
+					}
+				});
 			});
 		}
 	};

@@ -20,10 +20,12 @@ angular.module('artworksApp').service('DataService', function Dataservice($http)
 	};
 	var self = this;
 	self.materials = {};
+	self.materialsArray =[];
 
 	this.getMaterial = function(url) {
 		$http.get(url).then(function(result) {
 			self.materials[url] = result.data;
+			self.materialsArray.push(result.data);
 		});
 	};
 
