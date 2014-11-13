@@ -5,6 +5,14 @@ angular.module('artworksApp').controller('MainCtrl', function($scope, DataServic
 	$scope.artWorks = [];
 	$scope.mediums = DataService.mediums;
 	$scope.materials = DataService.materials;
+	$scope.filter = {};
+
+	$scope.nameFilter = function(artWork) {
+		if (!$scope.filter.text) {
+			return true;
+		}
+		return artWork.artist.toLowerCase().indexOf($scope.filter.text.toLowerCase()) > -1;
+	};
 	$scope.dimensionsInCm = [ {
 		id : true,
 		label : 'CM'

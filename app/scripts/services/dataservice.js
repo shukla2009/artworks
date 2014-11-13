@@ -53,7 +53,7 @@ angular.module('artworksApp').service('DataService', function Dataservice($http)
 		$http({
 			method:'DELETE',
 			url:'http://54.77.217.175/artworks/' + id + '/materials',
-			params:{
+			data:{
 				url : mat
 			}
 		}).then(function(result) {

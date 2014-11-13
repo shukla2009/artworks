@@ -1,5 +1,6 @@
 <div id="Homepage">
 	<div>
+		<input ng-model="filter.text" placeholder="Search By Name"/>
 		<button class="addButton btn btn-success" ng-click="createArtWork()">
 			<i class="glyphicon glyphicon-plus "> </i>
 			Create Art Work
@@ -13,7 +14,7 @@
 				<th></th>
 				<th></th>
 			</tr>
-			<tbody ng-repeat="w in artWorks" style="border: 2px solid grey;">
+			<tbody ng-repeat="w in artWorks | filter:nameFilter" style="border: 2px solid grey;">
 				<tr>
 					<td>
 						<div style="font-weight: bold;">{{w.artist}}</div>
